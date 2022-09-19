@@ -19,12 +19,13 @@ class CreateUsersTable extends Migration
             $table->string('apellidos');
             $table->string('cedula')->unique();
             $table->date('fecha_nacimiento');
-            $table->enum('rol',['RH','Empleado','Administrador'])->default('Empleado');
+            $table->enum('rol',['RH','Empleado'])->default('Empleado');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->foreignId('user_id')->nullable()->constant('users')->onDelete('cascade');
+            $table->foreignId('user_created_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_updated_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

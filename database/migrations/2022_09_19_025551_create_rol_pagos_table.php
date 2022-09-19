@@ -15,6 +15,10 @@ class CreateRolPagosTable extends Migration
     {
         Schema::create('rol_pagos', function (Blueprint $table) {
             $table->id();
+            $table->decimal('neto_pagar',15);
+            $table->foreignId('empleado_id')->constrained('empleados')->onDelete('cascade');
+            $table->foreignId('user_created_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_updated_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
