@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">ROLES DE PAGO</h2>
-                    <a class="btn btn-sm btn-success p-3" href="/rol">
+                    <a class="btn btn-sm btn-success p-3" href="/rol-pago">
                         Crear
                     </a>
                 </div>
