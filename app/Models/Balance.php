@@ -11,6 +11,7 @@ class Balance extends Model
 
     protected $fillable = [
         'tipo',
+        'concepto',
         'valor',
         'rol_pago_id',
         'user_created_id',

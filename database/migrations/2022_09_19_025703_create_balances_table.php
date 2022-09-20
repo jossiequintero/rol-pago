@@ -16,6 +16,7 @@ class CreateBalancesTable extends Migration
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
             $table->enum('tipo',['Ingreso', 'Egreso']);
+            $table->string('concepto');
             $table->decimal('valor',15);
             $table->foreignId('rol_pago_id')->constrained('rol_pagos')->onDelete('cascade');
             $table->foreignId('user_created_id')->nullable()->constrained('users')->onDelete('cascade');

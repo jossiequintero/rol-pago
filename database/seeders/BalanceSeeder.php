@@ -16,6 +16,7 @@ class BalanceSeeder extends Seeder
     {
         Balance::create([
             'tipo' =>'Ingreso',
+            'concepto'=>'Horas extras',
             'valor' =>200.00,
             'rol_pago_id'=>1,
         ]);

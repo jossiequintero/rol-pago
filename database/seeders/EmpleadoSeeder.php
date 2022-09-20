@@ -16,7 +16,7 @@ class EmpleadoSeeder extends Seeder
     {
         Empleado::create([
             'sueldo' => 1200.00,
-            'user_id' => 4,
+            'user_id' => 2,
         ]);
     }
 }

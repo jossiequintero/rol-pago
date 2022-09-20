@@ -40,7 +40,7 @@ class HomeController extends Controller
         $data = DB::table('users')
             ->join('empleados', 'users.id', '=', 'empleados.user_id')
             ->join('rol_pagos', 'empleados.id', '=', 'rol_pagos.empleado_id')
-            ->select('rol_pagos.id', 'users.nombres', 'users.apellidos', 'rol_pagos.neto_pagar', 'rol_pagos.created_at')
+            ->select('rol_pagos.id', 'users.name', 'users.apellidos', 'rol_pagos.neto_pagar', 'rol_pagos.created_at')
             ->get();
 
         $empleados = Empleado::all();

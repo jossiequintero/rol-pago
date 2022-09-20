@@ -55,7 +55,7 @@
                                         {{$dataItem->id}}
                                     </td>
                                     <td>
-                                        {{ $dataItem->nombres}}
+                                        {{ $dataItem->name}}
                                     </td>
                                     <td>
                                         {{ $dataItem->apellidos }}

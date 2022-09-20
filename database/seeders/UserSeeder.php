@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'nombres' => 'Jossie S.',
+            'name' => 'Jossie S.',
             'apellidos' => 'Quintero Giron',
             'cedula' => '0850111111',
             'fecha_nacimiento' => '1998-09-08',
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'nombres' => 'Juan S.',
+            'name' => 'Juan S.',
             'apellidos' => 'Quintero Giron',
             'cedula' => '0850222222',
             'fecha_nacimiento' => '1999-01-01',
