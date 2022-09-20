@@ -23,7 +23,7 @@ class RolPagoController extends Controller
      */
     public function create()
     {
-        //
+        return view('nuevo-rol-pago');
     }
 
     /**

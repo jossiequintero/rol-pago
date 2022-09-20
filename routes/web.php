@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolPagoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //EDITAR
 // Route::get('/rol-pago/{id?}',[HomeController::class, 'RolPagoShow']);
 
-Route::get('/rol-pago',[HomeController::class, 'RolPagoShow']);
+Route::resource('/rol-pago','RolPagoController');
+
+
 Route::get('/rol-pago-delete/{id}',[HomeController::class, 'RolPagoDelete']);
 // Route::post('/rol-pago/{id?}',[HomeController::class, 'RolPagoStore']);
 
@@ -41,3 +44,5 @@ Route::get('/mensaje',[HomeController::class, 'mensaje']);
 
 
 Route::get('/roles', [HomeController::class, 'showRoles']);
+
+Route::get('/rolempleado', [HomeController::class, 'rolEmpleado']);

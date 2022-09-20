@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">ROLES DE PAGO</h2>
-                    <a class="btn btn-sm btn-success p-3" href="/rol-pago">
+                    <a class="btn btn-sm btn-success p-3" href="{{ route('rol-pago.create') }}">
                         Crear
                     </a>
                 </div>
@@ -40,34 +40,35 @@
                             </thead>
                             <tbody>
                                 @if (@$data)
-                                {{ $data }}
                                 @foreach ($data as $dataItem)
                                 <tr>
                                     <td>
-                                        <a class="btn btn-sm btn-primary" href="/rol-pago/{{ $dataItem->id }}">
+                                        <a class="btn btn-sm btn-primary"
+                                            href="/edit-rol-pago/{{ $dataItem['rolpago_id'] }}">
                                             Editar
                                         </a>
-                                        <a class="btn btn-sm btn-danger" href="/delete-rol-pago/{{$dataItem->id }}">
+                                        <a class="btn btn-sm btn-danger"
+                                            href="/delete-rol-pago/{{$dataItem['rolpago_id'] }}">
                                             Borrar
                                         </a>
                                     </td>
                                     <td>
-                                        {{$dataItem->id}}
+                                        {{$dataItem['rolpago_id']}}
                                     </td>
                                     <td>
-                                        {{ $dataItem->name}}
+                                        {{ $dataItem['name']}}
                                     </td>
                                     <td>
-                                        {{ $dataItem->apellidos }}
+                                        {{ $dataItem['apellidos'] }}
                                     </td>
                                     <td>
-                                        {{ $dataItem->neto_pagar }}
+                                        {{ $dataItem['neto_pagar'] }}
                                     </td>
                                     <td>
-                                        {{ $dataItem->created_at }}
+                                        {{ $dataItem['fecha_creacion'] }}
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-primary" href="/rol-pago/{{ $dataItem->id }}">
+                                        <a class="btn btn-sm btn-primary" href="/rolpago/{{ $dataItem['rolpago_id'] }}">
                                             Ver
                                         </a>
                                     </td>

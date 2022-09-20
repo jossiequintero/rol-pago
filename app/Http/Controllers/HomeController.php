@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\UserService as ServicesUserService;
-use App\Services\EmpleadoService;
 use App\Services\UserService;
+use App\Services\EmpleadoService;
 use App\Models\Empleado;
 use App\Models\RolPago;
 use App\Models\User;
 use App\Services\RolPagoService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,21 +30,18 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     // public function index(UserService $service)
-    public function index()
+    public function index(RolPagoService $service)
     {
-        // $empleados = $service->getAllEmpleadoUserInfo();
-
-
-        $AuthUser = User::find(auth()->user()->id);
-
-        $data = DB::table('users')
-            ->join('empleados', 'users.id', '=', 'empleados.user_id')
-            ->join('rol_pagos', 'empleados.id', '=', 'rol_pagos.empleado_id')
-            ->select('rol_pagos.id', 'users.name', 'users.apellidos', 'rol_pagos.neto_pagar', 'rol_pagos.created_at')
-            ->get();
-
-        $empleados = Empleado::all();
-        return view('home', compact('empleados', 'data'));
+        $data = $service->allRolUser();
+        // return $data;
+        return view('home', compact('data'));
+    }
+    public function edit(RolPagoService $service){
+        return "al";
+    }
+    public function show($id, RolPAgoService $service){
+        $data = $service->getRolPago($id);
+        return view('show-rol-pago', compact('data'));
     }
     public function RolPagoShow()
     {
@@ -75,4 +72,10 @@ class HomeController extends Controller
     public function showRoles(RolPagoService $service){
         return $service->all();
     }
+    public function rolEmpleado(RolPagoService $service){
+        return $service->allRolUser();
+    }
+    // public function rolempleado(RolPagoService $service){
+    //     return $service->allRolUser()
+    // }
 }

@@ -18,4 +18,10 @@ final class RolPagoService{
     public function all():Collection{
         return $this->repository->all();
     }
+    public function allRolUser(){
+        return $this->repository->getAllRolWithUser();
+    }
+    public function getRolPago($id){
+        return $this->repository->getRolPago($id);
+    }
 }
