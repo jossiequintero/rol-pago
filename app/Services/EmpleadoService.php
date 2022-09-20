@@ -1,12 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Http\Services;
+namespace App\Services;
 
-use App\Http\Repositories\EmpleadoRepository;
+use App\Repositories;
 use App\Models\Empleado;
 use App\Models\User;
-
-;
+use App\Repositories\EmpleadoRepository;
 use Illuminate\Database\Eloquent\Collection;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -15,18 +14,19 @@ class EmpleadoService{
     public function __construct(EmpleadoRepository $repo){
         $this->repository = $repo;
     }
-    public function getEmpleadoUserInfo(EmpleadoRepository $empleado, int $id):User{
+    public function getEmpleadoUserInfo(int $id){
         try {
-            return $empleado->getEmpleadoUserInfo($id);
+            return $this->repository->getEmpleadoUserInfo($id);
         } catch (\Throwable $th) {
-            //throw $th;
         }
     }
-    public function getAllEmpleadoUserInfo():Collection{
-        $repo = new EmpleadoRepository;
-        return $repo->getAllEmpleadoUserInfo();
+    public function getAllEmpleadoUserInfo(){
+        return $this->repository->getAllEmpleadoUserInfo();
     }
     public function getSueldo(int $id){
-        // return getSueldo;
+        return 'getSueldo' .$id;
+    }
+    public function getAll(){
+        return $this->repository->getAll();
     }
 }

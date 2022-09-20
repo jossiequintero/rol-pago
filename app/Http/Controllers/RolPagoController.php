@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\EmpleadoService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class RolPagoController extends Controller
@@ -21,9 +23,11 @@ class RolPagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(EmpleadoService $empleadoService, UserService $userService )
     {
-        return view('nuevo-rol-pago');
+        $empleados = $empleadoService->getAll();
+        $user = auth()->user();
+        return view('nuevo-rol-pago',compact('empleados','user'));
     }
 
     /**

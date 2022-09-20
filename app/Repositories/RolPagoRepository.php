@@ -10,17 +10,38 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
 final class RolPagoRepository {
+
     private RolPago $model;
+
+     /**
+     * Funcion constructuro da la clase
+     *@param RolPago Rolpago
+     *@return void
+     *@author Jossie Quintero <quinterojosy@gmail.com>
+     *@date septiembre 20th, 2022
+     */
     public function __construct(RolPago $RolPago) {
         $this->model = $RolPago;
     }
-    public function message()
-    {
-        return "hola Mundo";
-    }
+
+     /**
+     * Funcion que obtiene los Roles de pago
+     *@param ninguno
+     *@return Collection
+     *@author Jossie Quintero <quinterojosy@gmail.com>
+     *@date septiembre 20th, 2022
+     */
     public function all(){
         return $this->model->all();
     }
+
+     /**
+     * Funcion que obtiene los roles con sus datos de usuario y empleado
+     *@param ninguno
+     *@return Collection
+     *@author Jossie Quintero <quinterojosy@gmail.com>
+     *@date septiembre 20th, 2022
+     */
     public function getAllRolWithUser(){
         $UserAuth = User::find(auth()->user()->id);
         $data= [];
@@ -43,19 +64,32 @@ final class RolPagoRepository {
             return $data;
         }
         else
-        // ($UserAuth->rol == 'Empleado')
         {
             $empleado = $UserAuth->empleado;
-            // Empleado::where('user_id',$UserAuth->id)->first();
             $roles = $empleado->rol_pago;
-            // $roles = RolPago::where('rol_pagos.empleado_id','=', $UserAuth->id)->get();
-            return $roles;// return $UserAuth->id;
-            // array_push($data,$info);
+            return $roles;
         }
     }
-    public function editRol(){
+
+     /**
+     * Funcion que que edita un rol
+     *@param int id
+     *@return string
+     *@author Jossie Quintero <quinterojosy@gmail.com>
+     *@date septiembre 20th, 2022
+     */
+    public function editRol(int $id){
+        return "Mensaje";
 
     }
+
+     /**
+     * Funcion que obtiene un rol de pago por su id
+     *@param int id
+     *@return RolPago
+     *@author Jossie Quintero <quinterojosy@gmail.com>
+     *@date septiembre 20th, 2022
+     */
     public function getRolPago($id){
         $UserAuth = User::find(auth()->user()->id);
         $data = array();
