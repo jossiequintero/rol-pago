@@ -18,13 +18,13 @@ final class RolPagoRepository {
     {
         return "hola Mundo";
     }
-    public function all():Collection{
+    public function all(){
         return $this->model->all();
     }
     public function getAllRolWithUser(){
         $UserAuth = User::find(auth()->user()->id);
         $data= [];
-        if($UserAuth->rol = 'RH')
+        if($UserAuth->rol == 'RH')
         {
             $allrolpago = $this->model->all();
             foreach($allrolpago as $item){
@@ -39,7 +39,18 @@ final class RolPagoRepository {
                 $info = ['rolpago_id'=>$rolpago->id,'name'=>$datauser->name,'apellidos'=>$datauser->apellidos, 'neto_pagar'=>$rolpago->neto_pagar,'fecha_creacion'=>$rolpago->created_at];
                 array_push($data,$info);
             }
+
             return $data;
+        }
+        else
+        // ($UserAuth->rol == 'Empleado')
+        {
+            $empleado = $UserAuth->empleado;
+            // Empleado::where('user_id',$UserAuth->id)->first();
+            $roles = $empleado->rol_pago;
+            // $roles = RolPago::where('rol_pagos.empleado_id','=', $UserAuth->id)->get();
+            return $roles;// return $UserAuth->id;
+            // array_push($data,$info);
         }
     }
     public function editRol(){
@@ -51,11 +62,7 @@ final class RolPagoRepository {
         if($UserAuth->rol = 'RH')
         {
             $rolpago = $this->model->find($id);
-            // $rolpago = new RolPago;
-            // $rolpago = $item;
-            $dataempleado = new Empleado;
             $dataempleado = $rolpago->empleado;
-            $datauser = new User;
             $datauser = $dataempleado->user;
 
             $info = [
@@ -68,10 +75,10 @@ final class RolPagoRepository {
             ];
             array_push($data, $info);
 
-            return $data;
         }
-        else if($UserAuth->rol->Empleado){
-
+        else if($UserAuth->rol = 'Empleado'){
+            $data = $this->model->where('empleado_id', $UserAuth->id)->get();
         }
+        return $data;
     }
 }

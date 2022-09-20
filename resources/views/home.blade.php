@@ -40,6 +40,7 @@
                             </thead>
                             <tbody>
                                 @if (@$data)
+                                <?php dump($data)?>
                                 @foreach ($data as $dataItem)
                                 <tr>
                                     <td>
@@ -83,7 +84,58 @@
         </div>
         @endif
         @if (Auth::user()->rol == 'Empleado')
-        <h1>Soy Empleado</h1>
+        <div class="col-12 mt-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">MIS ROLES DE PAGO</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Neto a Pagar
+                                    </th>
+                                    <th>
+                                        Fecha de Creación
+                                    </th>
+                                    <th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (@$data)
+                                {{--
+                                <?php var_dump($data); ?> --}}
+
+                                @foreach ($data as $dataItem)
+                                <tr>
+                                    <td>
+                                        {{$dataItem['id']}}
+                                    </td>
+                                    <td>
+                                        {{ $dataItem['neto_pagar'] }}
+                                    </td>
+                                    <td>
+                                        {{ $dataItem['created_at'] }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" href="/rolpago/{{ $dataItem['id'] }}">
+                                            Ver
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endif
     </div>
 </div>
