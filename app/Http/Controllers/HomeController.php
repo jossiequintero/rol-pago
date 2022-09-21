@@ -19,21 +19,41 @@ class HomeController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
-
+/**
+     * @OA\Get(
+     *      path="/projects",
+     *      operationId="getProjectsList",
+     *      tags={"Projects"},
+     *      summary="Get list of projects",
+     *      description="Returns list of projects",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/ProjectResource")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    // public function index(UserService $service)
     public function index(RolPagoService $service)
     {
         $data = $service->allRolUser();
-        // return $data;
         return view('home', compact('data'));
     }
     public function edit(RolPagoService $service){
@@ -46,29 +66,18 @@ class HomeController extends Controller
     public function RolPagoShow()
     {
         try {
-            // $service = new EmpleadoService;
-            // $data = $service->getAllEmpleadoUserInfo();
             $data = array();
             return view('rol-pago', $data);
         } catch (\Throwable $th) {
-            //throw $th;
         }
     }
     public function UsuarioStore(array $data, UserService $service)
     {
         try {
             return $service->crear($data);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        } catch (\Throwable $th) {}
     }
-    // public function saludar($nombre = 'Jossie Quintero', UserService $service){
-    //     return $service->saludar($nombre);
-    // }
 
-    public function mensaje(RolPagoService $service){
-        return $service->msg();
-    }
     public function showRoles(RolPagoService $service){
         return $service->all();
     }
