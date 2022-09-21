@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">ROLES DE PAGO</h2>
-                    <a class="btn btn-sm btn-success p-3" href="{{ route('rol-pago.create') }}">
+                    <a class="btn btn-sm btn-success p-3" href="/rol-pago">
                         Crear
                     </a>
                 </div>
@@ -108,9 +108,7 @@
                             </thead>
                             <tbody>
                                 @if (@$data)
-                                {{--
-                                <?php var_dump($data); ?> --}}
-
+                                <?php var_dump($data); ?>
                                 @foreach ($data as $dataItem)
                                 <tr>
                                     <td>

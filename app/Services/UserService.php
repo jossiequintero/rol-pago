@@ -40,11 +40,4 @@ class UserService{
     public function crear(array $request){
         return $this->repo->crear($request);
     }
-
-    public function getAllEmpleadoUserInfo(){
-        return "aglo";
-    }
-    public function saludar($nombre){
-        return $this->repo->saludar($nombre);
-    }
 }

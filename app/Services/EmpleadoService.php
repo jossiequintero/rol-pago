@@ -29,4 +29,10 @@ class EmpleadoService{
     public function getAll(){
         return $this->repository->getAll();
     }
+    public function getEmpleadoById($id){
+        return $this->repository->getEmpleadoById($id);
+    }
+    public function getEmpleadoSueldoById($id){
+        return $this->repository->getEmpleadoSueldoById($id);
+    }
 }

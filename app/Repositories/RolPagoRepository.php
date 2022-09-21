@@ -63,13 +63,15 @@ final class RolPagoRepository
 
                 $info = ['rolpago_id' => $rolpago->id, 'name' => $datauser->name, 'apellidos' => $datauser->apellidos, 'neto_pagar' => $rolpago->neto_pagar, 'fecha_creacion' => $rolpago->created_at];
                 array_push($data, $info);
+                return $data;
             }
 
-            return $data;
         } else {
             $empleado = $UserAuth->empleado;
-            $roles = $empleado->rol_pago;
-            return $roles;
+            if(!$empleado == null) {
+                return $rolpago = $empleado->rol_pago;
+            }
+
         }
     }
 
@@ -114,5 +116,12 @@ final class RolPagoRepository
             $data = $this->model->where('empleado_id', $UserAuth->id)->get();
         }
         return $data;
+    }
+    public function SaveRolPago($data){
+        $rolpago = new RolPago;
+        $rolpago->neto_pagar = $data['neto_pagar'];
+        $rolpago->empleado_id = $data['empleado_id'];
+        $rolpago->save();
+        return $rolpago->id;
     }
 }

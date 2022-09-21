@@ -25,4 +25,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/rol-pago','RolPagoController');
+Route::get('/rol-pago',[RolPagoController::class, 'create'])->name('rol-pago');
+
+Route::post('/rol-pago/generar',[RolPagoController::class, 'GenerarRolPago'])->name('rol-pago-generar');
+
+Route::get('/rol-pago/generar/{rolpago_id?}',[BalanceController::class, 'create']);
+Route::post('/rol-pago/generar/{rolpago_id}',[BalanceController::class, 'store']);

@@ -42,4 +42,7 @@ final class RolPagoService{
         }
         return ($sueldo - $aporteIESS) + $totalIngresos - $totalEgresos;
     }
+    public function SaveRolPago($data){
+        return $this->repository->SaveRolPago($data);
+    }
 }

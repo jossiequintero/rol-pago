@@ -2,87 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\EmpleadoService;
+use App\Services\RolPagoService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class RolPagoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function create(EmpleadoService $empleadoService,$empleado_id=0 )
     {
-        //
+        $data = $empleadoService->getEmpleadoById($empleado_id);
+        $empleados = $empleadoService->getAllEmpleadoUserInfo();
+        dump($empleados, $data);
+        $empleado = null;
+        return view('nuevo-rol-pago',compact('data','empleados','empleado'));
     }
+    public function GenerarRolPago(EmpleadoService $empleadoService ,RolPagoService $service, Request $request){
+        $empleado_id = $request->empleado_id;
+        $empleado = $empleadoService->getEmpleadoSueldoById($empleado_id);
+        $data = [
+            'empleado_id' => $empleado_id,
+            'neto_pagar' => $empleado['neto_pagar'],
+        ];
+        $rolpago_id = $service->SaveRolPago($data);
+        dump($rolpago_id);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(EmpleadoService $empleadoService, UserService $userService )
-    {
-        $empleados = $empleadoService->getAll();
-        $user = auth()->user();
-        return view('nuevo-rol-pago',compact('empleados','user'));
+        return view('generar-rol-pago',compact('empleado','rolpago_id'));
     }
+    public function GenerarRolPagoBalance($empleado_id){
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
